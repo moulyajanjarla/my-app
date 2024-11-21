@@ -1,54 +1,107 @@
 import React, { useState } from 'react';
 
-function ToDoApp() {
+const ToDoApp = () => {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState('');
 
-  const addTask = () => {
-    if (input.trim() !== '') {
-      setTasks([...tasks, { id: Date.now(), text: input, completed: false }]);
+  // Add a new task
+  const handleAddTask = () => {
+    const trimmedInput = input.trim();
+    if (trimmedInput) {
+      const newTask = { id: Date.now(), text: trimmedInput, completed: false };
+      setTasks((prevTasks) => [...prevTasks, newTask]);
       setInput('');
     }
   };
 
-  const toggleComplete = (id) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
+  // Toggle task completion
+  const handleToggleComplete = (taskId) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId ? { ...task, completed: !task.completed } : task
       )
     );
   };
 
-  const deleteTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+  // Delete a task
+  const handleDeleteTask = (taskId) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
   };
 
   return (
-    <div>
-      <div>
+    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+      {/* Input Section */}
+      <div style={{ marginBottom: '10px' }}>
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Add a new task"
+          style={{
+            padding: '5px',
+            marginRight: '10px',
+            borderRadius: '4px',
+            border: '1px solid #ccc',
+          }}
         />
-        <button onClick={addTask}>Add</button>
+        <button
+          onClick={handleAddTask}
+          style={{
+            padding: '5px 10px',
+            backgroundColor: '#28a745',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+          }}
+        >
+          Add
+        </button>
       </div>
-      <ul>
+
+      {/* Task List Section */}
+      <ul style={{ listStyleType: 'none', padding: 0 }}>
         {tasks.map((task) => (
           <li
             key={task.id}
             style={{
-              textDecoration: task.completed ? 'line-through' : 'none',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '10px',
+              padding: '10px',
+              backgroundColor: '#f9f9f9',
+              border: '1px solid #ddd',
+              borderRadius: '4px',
             }}
           >
-            <span onClick={() => toggleComplete(task.id)}>{task.text}</span>
-            <button onClick={() => deleteTask(task.id)}>Delete</button>
+            <span
+              onClick={() => handleToggleComplete(task.id)}
+              style={{
+                textDecoration: task.completed ? 'line-through' : 'none',
+                cursor: 'pointer',
+              }}
+            >
+              {task.text}
+            </span>
+            <button
+              onClick={() => handleDeleteTask(task.id)}
+              style={{
+                backgroundColor: '#dc3545',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                padding: '5px 10px',
+              }}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
     </div>
   );
-}
+};
 
 export default ToDoApp;
