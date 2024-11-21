@@ -1,47 +1,87 @@
+/* General Styles */
 div {
-    margin: 20px;
-  }
-  
-  input {
-    padding: 10px;
-    margin-right: 10px;
-    width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    margin: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  span {
-    cursor: pointer;
-    font-size: 18px;
-  }
-  
-  button {
-    margin-left: 10px;
-  }
-  
+  margin: 20px;
+}
+
+input {
+  padding: 10px;
+  margin-right: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s;
+}
+
+li:hover {
+  background-color: #e9ecef;
+}
+
+span {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+button {
+  margin-left: 10px;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #333;
+  color: #fff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode input {
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+body.dark-mode button {
+  background-color: #555;
+  color: #fff;
+}
+
+body.dark-mode button:hover {
+  background-color: #666;
+}
+
+body.dark-mode li {
+  background-color: #444;
+  border: 1px solid #555;
+}
+
+body.dark-mode li:hover {
+  background-color: #555;
+}
